@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+
+<div class="m-5">
+
+    <div class="flex items-center">
+        <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
+            {% for tag in tags %}
+                <button type="button" 
+                        class="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out mr-1">{{ tag.name }}</button>
+    
+            {% endfor %}
+        </div>
+      </div>
+    
+    <br/>
+    
+    {% for film in films %}
+        <a href="#" class="block p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ film.name }}</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">Director: {{ film.director }}</p>
+            <small>
+                {% for tag in film.tags.all %}
+                    {{ tag }}, 
+                {% endfor %}
+            </small>
+        </a>
+    {% endfor %}
+</div>
+{% endblock content %}
